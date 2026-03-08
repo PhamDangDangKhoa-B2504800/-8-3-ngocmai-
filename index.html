@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>8/3 For Ngọc Mai</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+overflow:hidden;
+}
+
+/* Ẩn các trang */
+
+.page{
+display:none;
+height:100vh;
+width:100%;
+position:absolute;
+top:0;
+left:0;
+}
+
+/* ===================== */
+/* SIDE 1 CÔNG NGHỆ */
+/* ===================== */
+
+#page1{
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:black;
+color:#00fff7;
+}
+
+.tech-bg{
+position:absolute;
+width:100%;
+height:100%;
+background:radial-gradient(circle,#001,#000);
+z-index:0;
+overflow:hidden;
+}
+
+.tech-bg span{
+position:absolute;
+color:#0ff;
+font-size:18px;
+animation:fall linear infinite;
+opacity:0.7;
+}
+
+@keyframes fall{
+0%{transform:translateY(-100px)}
+100%{transform:translateY(100vh)}
+}
+
+.start-btn{
+padding:20px 40px;
+font-size:28px;
+background:#00fff7;
+border:none;
+border-radius:40px;
+cursor:pointer;
+box-shadow:0 0 20px #0ff;
+position:relative;
+z-index:2;
+transition:0.3s;
+}
+
+.start-btn:hover{
+transform:scale(1.1);
+}
+
+/* ===================== */
+/* SIDE 2 BĂNG GIÁ */
+/* ===================== */
+
+#page2{
+background:linear-gradient(#dff6ff,#bde0ff);
+color:#004b87;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+.ice{
+font-size:40px;
+margin-bottom:30px;
+}
+
+input{
+padding:12px;
+font-size:18px;
+border-radius:10px;
+border:none;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#5dade2;
+color:white;
+cursor:pointer;
+margin-top:10px;
+}
+
+/* ===================== */
+/* SIDE 3 TÌNH YÊU */
+/* ===================== */
+
+#page3{
+background:linear-gradient(#ff9a9e,#fad0c4);
+overflow:hidden;
+}
+
+/* trái tim lớn */
+
+.big-heart{
+position:absolute;
+top:35%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:130px;
+color:red;
+animation:beat 1s infinite;
+}
+
+@keyframes beat{
+0%{transform:translate(-50%,-50%) scale(1)}
+50%{transform:translate(-50%,-50%) scale(1.25)}
+100%{transform:translate(-50%,-50%) scale(1)}
+}
+
+/* caption */
+
+.caption{
+position:absolute;
+top:55%;
+left:50%;
+transform:translateX(-50%);
+width:70%;
+font-size:22px;
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 0 25px rgba(0,0,0,0.3);
+line-height:1.6;
+}
+
+/* trái tim bay */
+
+.heart{
+position:absolute;
+color:red;
+font-size:25px;
+animation:fly 6s linear infinite;
+}
+
+@keyframes fly{
+0%{transform:translateY(100vh) scale(1)}
+100%{transform:translateY(-100px) scale(1.6)}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDE 1 -->
+
+<div id="page1" class="page" style="display:flex">
+
+<div class="tech-bg" id="tech"></div>
+
+<button class="start-btn" onclick="nextPage()">🚀 Chuẩn bị chưaaa</button>
+
+</div>
+
+
+<!-- SIDE 2 -->
+
+<div id="page2" class="page">
+
+<div class="ice">❄️ Nhập mật khẩu băng giá ❄️</div>
+
+<input id="pass" placeholder="Nhập mật khẩu">
+
+<button onclick="checkPass()">Mở trái tim</button>
+
+<p id="wrong"></p>
+
+</div>
+
+
+<!-- SIDE 3 -->
+
+<div id="page3" class="page">
+
+<div class="big-heart">❤️</div>
+
+<div class="caption">
+
+✨ Phụ nữ giống như những đóa hoa, có loài kiêu sa, có loài dịu dàng.  
+Nhưng <b>Ngọc Mai</b> lại khác — em là đóa hoa tinh khôi nằm sâu bên trong lớp băng lạnh giá  
+mà vẫn nóng cháy như ánh ban <b>"mai"</b> mùa xuân rực rỡ.
+
+<br><br>
+
+🌷 Chúc em ngày <b>8/3</b> luôn đủ nắng để nở rộ,  
+đủ nước để tươi xanh và luôn là <b>bông hoa rực rỡ nhất</b>  
+trong khu vườn của chính mình 🌷
+
+</div>
+
+</div>
+
+
+<script>
+
+/* chuyển trang */
+
+function nextPage(){
+document.getElementById("page1").style.display="none";
+document.getElementById("page2").style.display="flex";
+}
+
+/* kiểm tra mật khẩu */
+
+function checkPass(){
+
+let pass=document.getElementById("pass").value;
+
+if(pass==="ngocmaibanggia"){
+
+document.getElementById("page2").style.display="none";
+document.getElementById("page3").style.display="block";
+
+createHearts();
+
+}else{
+
+document.getElementById("wrong").innerHTML="Sai mật khẩu rồi ❄️";
+
+}
+
+}
+
+/* tạo trái tim bay */
+
+function createHearts(){
+
+setInterval(function(){
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(20+Math.random()*30)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+
+},300);
+
+}
+
+/* hiệu ứng công nghệ */
+
+for(let i=0;i<70;i++){
+
+let span=document.createElement("span");
+
+span.innerHTML="01";
+
+span.style.left=Math.random()*100+"vw";
+
+span.style.animationDuration=(3+Math.random()*5)+"s";
+
+span.style.top=Math.random()*-100+"px";
+
+document.getElementById("tech").appendChild(span);
+
+}
+
+</script>
+
+</body>
+</html>
